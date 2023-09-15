@@ -1,4 +1,4 @@
-import { repository } from "repositories/people.repositories"
+import { repository } from "../repositories/people.repositories"
 import { Count, User } from "../../protocols"
 
 async function userSort():Promise<User>{

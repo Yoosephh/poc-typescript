@@ -1,4 +1,4 @@
-import db from "config/db.connection"
+import db from "../config/db.connection"
 import { Count, User } from "../../protocols"
 
 async function sortUserId(id:number):Promise<User>{
