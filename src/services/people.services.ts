@@ -10,4 +10,17 @@ async function userSort():Promise<User>{
   return user
 }
 
-export const services = {userSort}
+async function userCreate(user:Omit<User, "id">):Promise<void>{
+  await repository.createUser(user)
+}
+
+async function deleteUser(id:number):Promise<void>{
+  await repository.deleteUser(id)
+}
+
+async function updateUser(id:number, firstName:string|null, lastName:string|null):Promise<void>{
+  
+  await repository.updateUser(id, firstName, lastName)
+}
+
+export const services = {userSort, userCreate, deleteUser, updateUser}
