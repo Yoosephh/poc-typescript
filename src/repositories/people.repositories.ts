@@ -1,17 +1,17 @@
 import db from "../config/db.connection"
-import { Count, User } from "../../protocols"
+import { ICount, IUser, IName } from "../../protocols"
 
-async function sortUserId(id:number):Promise<User>{
-  const user = await db.query<User>(`SELECT * FROM people WHERE id = $1;`, [id])
+async function sortUserId(id:number):Promise<IUser>{
+  const user = await db.query<IUser>(`SELECT * FROM people WHERE id = $1;`, [id])
   return user.rows[0]
 }
 
-async function usersCount():Promise<Count>{
-  const count = await db.query<Count>(`SELECT COUNT(*) FROM people;`)
+async function usersCount():Promise<ICount>{
+  const count = await db.query<ICount>(`SELECT COUNT(*) FROM people;`)
   return count.rows[0]
 }
 
-async function createUser(user:Omit<User, "id">) {
+async function createUser(user:IName) {
   const {firstName, lastName} = user
   await db.query(`INSERT INTO people ("firstName", "lastName") VALUES ($1, $2);`, [firstName, lastName])
 }

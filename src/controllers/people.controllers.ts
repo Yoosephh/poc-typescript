@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { User } from "../../protocols";
+import { IUser, IName } from "../../protocols";
 import { services } from "../services/people.services";
 
 export async function sortUser(req:Request, res:Response){
-  const user:User = await services.userSort()
+  const user:IUser = await services.userSort()
   res.send(user)
 }
 
 export async function createUser(req:Request, res:Response){
-  const user:Omit<User, "id"> = req.body
+  const user:IName = req.body
   await services.userCreate(user)
   res.status(201).send("Usuario cadastrado!")
 }

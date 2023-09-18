@@ -1,9 +1,11 @@
-export type User = {
-  id: number;
+export interface IName {
   firstName: string;
   lastName: string;
 }
+export interface IUser extends IName {
+  id: number;
+}
 
-export type Count = {
+export interface ICount {
   count: number;
 }

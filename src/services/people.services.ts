@@ -1,16 +1,16 @@
 import { repository } from "../repositories/people.repositories"
-import { Count, User } from "../../protocols"
+import { ICount, IUser, IName } from "../../protocols"
 
-async function userSort():Promise<User>{
-  const totalUsers:Count = await repository.usersCount()
+async function userSort():Promise<IUser>{
+  const totalUsers:ICount = await repository.usersCount()
   const countUsers = totalUsers.count
   const id = Math.floor(Math.random() * countUsers) + 1
-  const user:User = await repository.sortUserId(id)
+  const user = await repository.sortUserId(id)
 
   return user
 }
 
-async function userCreate(user:Omit<User, "id">):Promise<void>{
+async function userCreate(user:IName):Promise<void>{
   await repository.createUser(user)
 }
 
